@@ -1,1 +1,23 @@
-<p>search works!</p>
+<div fxLayout="column">
+    <div>
+        <h1>Search</h1>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h1>Search II</h1>
+        <mat-form-field>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [(ngModel)]="term"
+                   [matAutocomplete]="auto"
+                   (input)="searching()">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let hero of heroes" [value]="hero">
+                    {{ hero.superhero }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+</div>
