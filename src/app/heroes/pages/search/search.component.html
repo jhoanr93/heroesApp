@@ -1,10 +1,10 @@
 <div fxLayout="column">
     <div>
-        <h1>Search</h1>
+        <h1>Find your hero</h1>
         <mat-divider></mat-divider>
     </div>
-    <div>
-        <h1>Search II</h1>
+    <div fxLayout="column">
+        <h3>Search</h3>
         <mat-form-field>
             <input type="text"
                    placeholder="Pick one"
@@ -13,11 +13,23 @@
                    [(ngModel)]="term"
                    [matAutocomplete]="auto"
                    (input)="searching()">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-autocomplete autoActiveFirstOption
+                             #auto="matAutocomplete"
+                             (optionSelected)="selectedOption ( $event )">
                 <mat-option *ngFor="let hero of heroes" [value]="hero">
                     {{ hero.superhero }}
                 </mat-option>
+                <mat-option value="" *ngIf="heroes.length === 0 && term.length > 0">
+                    We did not find any {{ term }}
+                </mat-option>
             </mat-autocomplete>
+
+            
         </mat-form-field>
+
+    </div>
+
+    <div *ngIf="heroSelected">
+        <app-hero-card [hero] = "heroSelected"></app-hero-card>
     </div>
 </div>

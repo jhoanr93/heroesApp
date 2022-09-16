@@ -1,1 +1,83 @@
-<p>add works!</p>
+<h1>
+    New Hero <small> {{ hero.superhero }} </small>
+</h1>
+
+<div fxLayout="row"
+     fxLayoutGap="40px"
+     fxLayout.sm="column">
+    <div fxFlex="50" fxLayout="column">
+        <div fxLayout="row"
+             fxLayoutGap="20px"
+             fxLayout.sm="column">
+            <mat-form-field fxFlex="100"
+                            fxLayout.sm="column">
+                <mat-label>Super Hero</mat-label>
+                <input matInput
+                        type="text"
+                        [(ngModel)]="hero.superhero"
+                        required>
+    
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="100">
+                <mat-label>Alter Ego</mat-label>
+                <input matInput
+                        type="text"
+                        [(ngModel)]="hero.alter_ego"
+                        required>
+    
+            </mat-form-field>
+        </div>
+        
+
+        <mat-form-field>
+            <mat-label>First Apperance</mat-label>
+            <input matInput
+                    type="text"
+                    [(ngModel)]="hero.first_appearance"
+                    required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Characters</mat-label>
+            <input matInput
+                    type="text"
+                    [(ngModel)]="hero.characters"
+                    required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Publisher</mat-label>
+            <mat-select [(ngModel)]="hero.publisher"
+                        required>
+                <mat-option *ngFor="let publisher of publishers"
+                        [value]="publisher.id">
+                        {{ publisher.desc }}
+                </mat-option>
+            </mat-select>            
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Foto Url</mat-label>
+            <input matInput
+                    type="url"
+                    [(ngModel)]="hero.alt_img"
+                    required>
+
+        </mat-form-field>
+
+        <br>
+
+        <button mat-raised-button
+                color="primary"
+                (click)="save()">
+            <mat-icon>edit</mat-icon>
+            Save
+        </button>
+
+    </div>
+    <div fxFlex="50">
+        <img [src]="hero | imagen ">
+
+    </div>
+</div>
